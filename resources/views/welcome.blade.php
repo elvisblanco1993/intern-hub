@@ -49,7 +49,7 @@
     
     <body>
         <div class="heading-wrapper">
-            <h1>Find the internship that works for you!</h1>
+            <h1>Find the internship that works for you</h1>
             <button class="orange-button">START YOUR SEARCH</button>
             
         </div>
