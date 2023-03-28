@@ -12,7 +12,10 @@ module.exports = {
     theme: {
         extend: {
             fontFamily: {
-                sans: ['Figtree', ...defaultTheme.fontFamily.sans],
+                sans: ['Inter', ...defaultTheme.fontFamily.sans],
+            },
+            colors: {
+                'intern': '#f94d39'
             },
         },
     },

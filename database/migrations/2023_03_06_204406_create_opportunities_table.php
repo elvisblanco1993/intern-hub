@@ -15,8 +15,10 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->string('slug');
-            $table->longText('description');
-            $table->string('application_url');
+            $table->longText('location');
+            $table->string('url');
+            $table->string('salary')->nullable();
+            $table->string('category');
             $table->timestamp('published_at')->nullable();
             $table->timestamp('closed_at')->nullable();
             $table->timestamps();
