@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Livewire\Admin\Opportunity\Index as Opportunities;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,8 +22,6 @@ Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
     'verified'
-])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
+])->prefix('admin')->group(function () {
+    Route::get('/opportunities', Opportunities::class)->name('opportunities');
 });

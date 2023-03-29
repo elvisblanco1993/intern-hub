@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('email');
             $table->string('name');
+            $table->json('categories');
             $table->timestamps();
         });
     }
