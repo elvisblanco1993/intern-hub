@@ -18,6 +18,7 @@ module.exports = {
                 'intern': '#f94d39'
             },
         },
+        
     },
 
     plugins: [require('@tailwindcss/forms'), require('@tailwindcss/typography')],
