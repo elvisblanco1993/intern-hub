@@ -10,6 +10,7 @@
     </header>
 
     <div class="py-12 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <x-input type="search" wire:model="query" placeholder="Search by position name" /> 
         <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
             <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                 <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
@@ -30,6 +31,9 @@
                             Category
                         </th>
                         <th scope="col" class="px-6 py-3">
+                            Location
+                        </th>
+                        <th scope="col" class="px-6 py-3">
                             Action
                         </th>
                     </tr>
@@ -46,6 +50,7 @@
                             <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">{{ $opportunity->title }}</th>
                             <td class="px-6 py-4">{{ Carbon\Carbon::parse($opportunity->created_at)->format('M d, Y') }}</td>
                             <td class="px-6 py-4">{{ $opportunity->category }}</td>
+                            <td class="px-6 py-4">{{ $opportunity->location }}</td>
                             <td class="flex items-center px-6 py-4 space-x-3">
                                 @livewire('admin.opportunity.edit', ['opportunity' => $opportunity], key('edit-'.$opportunity->id))
                                 @livewire('admin.opportunity.delete', ['opportunity' => $opportunity], key('delete-'.$opportunity->id))
