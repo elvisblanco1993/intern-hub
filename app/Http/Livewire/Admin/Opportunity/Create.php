@@ -29,6 +29,7 @@ class Create extends Component
         // Try to create opportunity.
         try {
             Opportunity::create([
+                'team_id' => auth()->user()->currentTeam->id,
                 'title' => $this->title,
                 'slug' => str($this->title)->slug(),
                 'location' => $this->location,
