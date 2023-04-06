@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\Admin\Opportunity\Index as Opportunities;
+use App\Http\Livewire\Website\Opportunity\Index as OpportunitiesAll;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,6 +18,9 @@ use App\Http\Livewire\Admin\Opportunity\Index as Opportunities;
 Route::get('/', function () {
     return view('welcome');
 });
+
+
+Route::get('/opportunities1', OpportunitiesAll::class)->name('opportunities1');
 
 Route::middleware([
     'auth:sanctum',
