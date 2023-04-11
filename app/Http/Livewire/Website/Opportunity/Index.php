@@ -18,7 +18,7 @@ class Index extends Component
         // return view('livewire.website.opportunity.index')->layout('layouts.guest');
         // $opportunities = Opportunity::get()                                                                                                   ::get();
         return view('livewire.website.opportunity.index', [
-            'opportunities' => Opportunity::where('title', 'like', '%' . $this->query . '%')->get()
-        ])->layout('layouts.guest');;
+            'opportunities' => Opportunity::where('title', 'like', '%' . $this->query . '%')->get(),
+        ])->layout('layouts.guest');
     }
 }

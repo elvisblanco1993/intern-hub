@@ -12,37 +12,48 @@
         <div class="mt-6 relative overflow-x-auto shadow-md sm:rounded-lg">
             <table class="w-full text-sm text-left text-gray-500">
                 <thead class="text-xs text-gray-700 uppercase bg-gray-50">
-                    <tr>
-                        <th scope="col" class="px-6 py-3">
-                            Position name
-                        </th>
-                        <th scope="col" class="px-6 py-3">
-                            Published at
-                        </th>
-                        <th scope="col" class="px-6 py-3">
-                            Category
-                        </th>
-                        <th scope="col" class="px-6 py-3">
-                            Location
-                        </th>
-                        <th scope="col" class="px-6 py-3">
-                            Action
-                        </th>
-                    </tr>
+                <tr>
+                    <th scope="col" class="px-6 py-3">
+                        Position name
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Published at
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Category
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Location
+                    </th>
+                </tr>
                 </thead>
                 <tbody>
+                    
+
                     @forelse ($opportunities as $opportunity)
-                        <tr class="bg-white border-b hover:bg-gray-50">
+                        <tr class="bg-white border-b hover:bg-gray-50" data-href="{{ $opportunity->url }}">
                             <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">{{ $opportunity->title }}</th>
                             <td class="px-6 py-4">{{ Carbon\Carbon::parse($opportunity->created_at)->format('M d, Y') }}</td>
                             <td class="px-6 py-4">{{ $opportunity->category }}</td>
                             <td class="px-6 py-4">{{ $opportunity->location }}</td>
-                            <td class="flex items-center px-6 py-4 space-x-3">
+                            <!-- <td class="flex items-center px-6 py-4 space-x-3"> -->
                             </td>
                         </tr>
                     @empty
 
                     @endforelse
+
+                    <script>
+                        document.addEventListener("DOMContentLoaded", ()=> {
+                            const rows = document.querySelectorAll("tr[data-href]");
+
+                            rows.forEach(row => {
+                                row.addEventListener("click", () => {
+                                    window.location.href = row.dataset.href;
+                                });
+                            });
+                        }); 
+                    </script>
                 </tbody>
             </table>
         </div>
