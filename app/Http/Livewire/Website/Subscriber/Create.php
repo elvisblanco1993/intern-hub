@@ -6,7 +6,7 @@ use Livewire\Component;
 
 class Create extends Component
 {
-    public $modal, $email, $category;
+    public $modal, $name, $email, $category;
 
     public function mount($category)
     {
@@ -21,6 +21,7 @@ class Create extends Component
     public function save()
     {
         dd([
+            $this->name,
             $this->email,
             $this->category,
         ]);

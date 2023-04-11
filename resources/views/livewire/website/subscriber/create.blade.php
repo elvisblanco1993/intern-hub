@@ -3,11 +3,16 @@
     <button wire:click="$toggle('modal')">Subscribe</button>
 
     <x-dialog-modal wire:model="modal">
-        <x-slot name="title">Subscribe</x-slot>
+        <x-slot name="title">Subscribing to: {{ $category }}</x-slot>
         <x-slot name="content">
-            <div class="">
-                <x-label>Please enter your e-mail</x-label>
-                <x-input type="email" wire:model="email" placeholder="jdoe001@fiu.edu" class="mt-1 w-full" />
+            <div>
+                <x-label for="name">Please enter your e-mail</x-label>
+                <x-input id="name" type="text" wire:model="name" placeholder="Zara Moonstone" required class="mt-1 w-full" />
+                <x-input-error for="name" class="mt-1"/>
+            </div>
+            <div class="mt-4">
+                <x-label for="email">Please enter your e-mail</x-label>
+                <x-input id="email" type="email" wire:model="email" placeholder="zmoo001@fiu.edu" required class="mt-1 w-full" />
                 <x-input-error for="email" class="mt-1"/>
             </div>
             <div class="mt-4">
