@@ -49,7 +49,8 @@
 
                             rows.forEach(row => {
                                 row.addEventListener("click", () => {
-                                    window.location.href = row.dataset.href;
+                                    //window.location.href = row.dataset.href;
+                                    window.open(row.dataset.href, '_blank');
                                 });
                             });
                         }); 
