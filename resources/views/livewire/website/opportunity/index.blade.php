@@ -38,8 +38,6 @@
                             <td class="px-6 py-4">{{ $opportunity->category }}</td>
                             <td class="px-6 py-4">{{ $opportunity->location }}</td>
                             <td class="flex items-center px-6 py-4 space-x-3">
-                                @livewire('admin.opportunity.edit', ['opportunity' => $opportunity], key('edit-'.$opportunity->id))
-                                @livewire('admin.opportunity.delete', ['opportunity' => $opportunity], key('delete-'.$opportunity->id))
                             </td>
                         </tr>
                     @empty

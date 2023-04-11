@@ -20,7 +20,7 @@ Route::get('/', function () {
 });
 
 
-Route::get('/opportunities1', OpportunitiesAll::class)->name('opportunities1');
+Route::get('/all-opportunities', OpportunitiesAll::class)->name('all-opportunities');
 
 Route::middleware([
     'auth:sanctum',
