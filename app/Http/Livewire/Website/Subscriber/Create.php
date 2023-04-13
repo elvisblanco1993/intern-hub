@@ -3,6 +3,9 @@
 namespace App\Http\Livewire\Website\Subscriber;
 
 use Livewire\Component;
+use App\Models\Category;
+use App\Models\Subscriber;
+use Illuminate\Support\Facades\Log;
 
 class Create extends Component
 {
@@ -20,10 +23,30 @@ class Create extends Component
 
     public function save()
     {
-        dd([
-            $this->name,
-            $this->email,
-            $this->category,
+        $this->validate([
+            'name' => 'required',
+            'email' => 'required|email',
         ]);
+
+        $category = Category::where('name', $this->category)->first();
+
+        if ($category->exists()) {
+            try {
+                $subscriber = Subscriber::create([
+                    'name' => $this->name,
+                    'email' => $this->email,
+                ]);
+                $subscriber->categories()->attach($category->id);
+
+                session()->flash('message', 'You have successfully subscribed to ' . $this->category);
+                session()->flash('style', 'success');
+            } catch (\Throwable $th) {
+                Log::error($th);
+                session()->flash('message', 'We ran into an error. Please try again later.');
+                session()->flash('style', 'error');
+            }
+        }
+
+        return redirect()->route('home');
     }
 }

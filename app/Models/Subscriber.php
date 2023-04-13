@@ -12,6 +12,7 @@ class Subscriber extends Model
     // User can only fill the email field in the forms.
     // This helps prevent DB injection in the server side.
     protected $fillable = [
+        'name',
         'email',
     ];
 

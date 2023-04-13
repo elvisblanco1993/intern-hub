@@ -7,6 +7,7 @@
                         <h1 class="text-white font-black text-7xl">
                             Find the internship that works for you
                         </h1>
+                        @livewire('website.subscriber.create', ['category' => 'Sales'])
                         <a href="#" class="bg-orange-500 hover:bg-orange-800  mt-6 inline-block px-8 py-4 rounded-lg uppercase bg-gradient-to-t from-intern to-intern/80 text-white font-bold">Start your search</a>
                     </div>
                 </div>

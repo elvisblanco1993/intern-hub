@@ -43,6 +43,7 @@ class Edit extends Component
                 'slug' => str($this->title)->slug(),
                 'location' => $this->location,
                 'url' => $this->url,
+                'salary' => $this->salary,
                 'category' => ($this->category == 'Other') ? $this->custom_category : $this->category,
             ]);
             session()->flash('flash.banner', 'Opportunity successfully updated!');
