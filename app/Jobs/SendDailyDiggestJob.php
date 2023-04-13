@@ -33,6 +33,25 @@ class SendDailyDiggestJob implements ShouldQueue
      */
     public function handle(): void
     {
+        $subscribers = Subscriber::groupBy('email')->get();
 
+        foreach ($subscribers as $subscriber) {
+            $email_address = $subscriber->email;
+            $full_name = $subscriber->name;
+            foreach ($subscriber->categories as $category) {
+                $jobs = Opportunity::select('title', 'category', 'url')->where('category', 'like', '%' . $category->name . '%')
+                    ->whereNull('closed_at')
+                    // ->whereBetween('created_at', [
+                    //     now()->subDay()->startOfDay(),
+                    //     now()->subDay()->endOfDay()
+                    // ])
+                    ->get()->toArray();
+                array_push($this->job_list, $jobs);
+            }
+
+            if (count($this->job_list) > 0) {
+                Mail::to($email_address)->send(new SendDailyDiggestMail($this->job_list));
+            }
+        }
     }
 }
