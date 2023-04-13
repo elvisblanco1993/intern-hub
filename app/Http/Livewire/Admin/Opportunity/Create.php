@@ -33,6 +33,7 @@ class Create extends Component
                 'title' => $this->title,
                 'slug' => str($this->title)->slug(),
                 'location' => $this->location,
+                'salary' => $this->salary,
                 'url' => $this->url,
                 'category' => ($this->category == 'Other') ? $this->custom_category : $this->category,
             ]);
