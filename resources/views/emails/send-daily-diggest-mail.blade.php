@@ -1,11 +1,16 @@
 <x-mail::message>
-# Introduction
+# Your internships feed for: {{ \Carbon\Carbon::parse(today())->format('M d, Y') }}
 
-The body of your message.
+<p class="text-center">Jobs are based on your subscriptions, profile, and activity on Intern Hub</p>
 
-<x-mail::button :url="''">
-Button Text
-</x-mail::button>
+---
+@forelse ($job_list as $job)
+## [{{ $job['title'] }}]({{ $job['url'] }})
+<p style="font-size: 0.8rem; line-height: 1em; background-color: #e2e8f0; padding: 0.2rem 0.4rem; display: inline-block; border-radius: 5px;">{{ $job['category'] }}</p>
+
+@empty
+
+@endforelse
 
 Thanks,<br>
 {{ config('app.name') }}
