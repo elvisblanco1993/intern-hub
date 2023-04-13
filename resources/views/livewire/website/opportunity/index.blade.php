@@ -25,35 +25,22 @@
                     <th scope="col" class="px-6 py-3">
                         Location
                     </th>
+                    <th scope="col" class="sr-only">Actions</th>
                 </tr>
                 </thead>
                 <tbody>
-                    
-
                     @forelse ($opportunities as $opportunity)
                         <tr class="bg-white border-b hover:bg-gray-50" data-href="{{ $opportunity->url }}">
-                            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">{{ $opportunity->title }}</th>
-                            <td class="px-6 py-4">{{ Carbon\Carbon::parse($opportunity->created_at)->format('M d, Y') }}</td>
-                            <td class="px-6 py-4">{{ $opportunity->category }}</td>
-                            <td class="px-6 py-4">{{ $opportunity->location }}</td>
-                            <!-- <td class="flex items-center px-6 py-4 space-x-3"> -->
+                            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap"><a href="{{ $opportunity->url }}" target="_blank">{{ $opportunity->title }}</a></th>
+                            <td class="px-6 py-4"><a href="{{ $opportunity->url }}" target="_blank">{{ Carbon\Carbon::parse($opportunity->created_at)->format('M d, Y') }}</a></td>
+                            <td class="px-6 py-4"><a href="{{ $opportunity->url }}" target="_blank">{{ $opportunity->category }}</a></td>
+                            <td class="px-6 py-4"><a href="{{ $opportunity->url }}" target="_blank">{{ $opportunity->location }}</a></td>
+                            <td class="flex items-center px-6 py-4 space-x-3">
+                                @livewire('website.subscriber.create', ['category' => $opportunity->category], key('subscribe.' . $opportunity->id))
                             </td>
                         </tr>
                     @empty
-
                     @endforelse
-
-                    <script>
-                        document.addEventListener("DOMContentLoaded", ()=> {
-                            const rows = document.querySelectorAll("tr[data-href]");
-
-                            rows.forEach(row => {
-                                row.addEventListener("click", () => {
-                                    window.open(row.dataset.href, '_blank');
-                                });
-                            });
-                        }); 
-                    </script>
                 </tbody>
             </table>
         </div>

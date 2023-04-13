@@ -47,6 +47,6 @@ class Create extends Component
             }
         }
 
-        return redirect()->route('home');
+        return redirect()->route('all-opportunities');
     }
 }
