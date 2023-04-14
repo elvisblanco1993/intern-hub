@@ -1,33 +1,25 @@
 <x-guest-layout>
     <div class="h-screen bg-cover bg-center" style="background-image: url({{ asset('images/image3.png') }})">
         <div class="h-full w-full backdrop-blur">
-            
-            <nav class="flex items-center justify-between flex-wrap bg-black p-4">
-                <!-- Logo -->
-                <div class="flex items-center flex-shrink-0 text-white mr-6">
-                    <img src="http://internhub.localhost/logo.svg" alt="InternHub" class="h-9 w-auto">
-                    <span class="font-semibold text-xl tracking-tight">InternHub</span>
-                </div>
-                <div class="w-full block flex-grow lg:flex lg:items-right lg:w-auto">
-                    <!-- Empty Div to align right -->
-                    <div class="text-sm lg:flex-grow">
-                    </div>
-                    <div>
-                        <a href="/login" class="inline-block text-md px-4 py-2 text-white hover:text-orange-500 mt-4 lg:mt-0">Login</a>
-                    </div>
-                    <div>
-                        <a href="/register" class="inline-block text-md px-4 py-2 text-white hover:text-orange-500 mt-4 lg:mt-0">Register</a>
-                    </div>
-                </div>
-            </nav>
+            <div class="absolute top-0 z-50 w-full h-16 bg-black/80 backdrop-blur text-white">
+                <nav class="max-w-screen-2xl mx-auto h-full flex items-center justify-between px-4 sm:px-6 lg:px-8">
+                    <a href="/">
+                        <img src="{{ asset('internHub-logo.svg') }}" alt="{{ config('app.name') }}" class="h-8 w-auto">
+                    </a>
 
-            <div class="h-full px-4 sm:px-16 md:px-24 lg:px-48">
-                <div class="h-full flex items-center max-w-4xl">
+                    <div class="flex items-center space-x-4 text-sm font-medium">
+                        <a href="{{ route('login') }}" class="inline-block hover:text-intern transition-all">Login</a>
+                        <a href="{{ route('register') }}" class="inline-block hover:text-intern transition-all">Register</a>
+                    </div>
+                </nav>
+            </div>
+            <div class="h-full px-4 sm:px-6 lg:px-8">
+                <div class="h-full flex items-center max-w-screen-2xl mx-auto">
                     <div>
                         <h1 class="text-white font-black text-7xl">
                             Find the internship that works for you
                         </h1>
-                        <a href="/all-opportunities" class="bg-orange-500 hover:bg-orange-800  mt-6 inline-block px-8 py-4 rounded-lg uppercase bg-gradient-to-t from-intern to-intern/80 text-white font-bold">Start your search</a>
+                        <a href="{{ route('all-opportunities') }}" class="bg-orange-500 hover:bg-orange-800  mt-6 inline-block px-8 py-4 rounded-lg uppercase bg-gradient-to-t from-intern to-intern/80 text-white font-bold">Start your search</a>
                     </div>
                 </div>
             </div>
