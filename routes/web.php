@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\Admin\Opportunity\Index as Opportunities;
 use App\Http\Livewire\Website\Opportunity\Index as OpportunitiesAll;
+use App\Http\Livewire\Website\Subscriber\Unsubscribe;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,6 +22,7 @@ Route::get('/', function () {
 
 
 Route::get('/all-opportunities', OpportunitiesAll::class)->name('all-opportunities');
+Route::get('/unsubscribe/{email}', Unsubscribe::class)->name('unsubscribe');
 
 Route::middleware([
     'auth:sanctum',

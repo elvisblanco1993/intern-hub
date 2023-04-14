@@ -15,7 +15,6 @@ return new class extends Migration
             $table->id();
             $table->foreignId('category_id');
             $table->foreignId('opportunity_id');
-            $table->timestamps();
         });
     }
 

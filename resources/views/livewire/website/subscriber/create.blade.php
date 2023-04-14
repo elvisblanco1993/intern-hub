@@ -19,7 +19,6 @@
                 <x-label for="categories">Select your preferences</x-label>
                 <select wire:model="categories" multiple
                     class="mt-1 w-full border-gray-300 focus:border-orange-500 focus:ring-orange-100 rounded-md shadow-sm">
-                    <option value="">Filter</option>
                     @foreach (\App\Models\Category::get() as $category)
                         <option value="{{ $category->id }}">{{ $category->name }}</option>
                     @endforeach

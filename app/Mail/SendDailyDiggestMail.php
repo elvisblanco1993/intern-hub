@@ -14,14 +14,15 @@ class SendDailyDiggestMail extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $job_list;
+    public $email, $job_list;
 
     /**
      * Create a new message instance.
      */
-    public function __construct($job_list)
+    public function __construct($email, $jobs)
     {
-        $this->job_list = $job_list;
+        $this->email = $email;
+        $this->job_list = $jobs;
     }
 
     /**
@@ -30,7 +31,7 @@ class SendDailyDiggestMail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Your daily diggest',
+            subject: 'Your internHub Job Feed',
         );
     }
 
@@ -41,7 +42,10 @@ class SendDailyDiggestMail extends Mailable
     {
         return new Content(
             markdown: 'emails.send-daily-diggest-mail',
-            with: $this->job_list
+            with: [
+                'job_list' => $this->job_list,
+                'email' => $this->email
+            ],
         );
     }
 
