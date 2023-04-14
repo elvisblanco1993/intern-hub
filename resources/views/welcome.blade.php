@@ -8,8 +8,7 @@
                     </a>
 
                     <div class="flex items-center space-x-4 text-sm font-medium">
-                        <a href="{{ route('login') }}" class="inline-block hover:text-intern transition-all">Login</a>
-                        <a href="{{ route('register') }}" class="inline-block hover:text-intern transition-all">Register</a>
+                        <a href="{{ route('register') }}" class="inline-block border border-intern bg-intern px-4 py-1.5 rounded-full hover:bg-transparent hover:text-intern transition-all">Post a Job</a>
                     </div>
                 </nav>
             </div>

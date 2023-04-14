@@ -19,6 +19,7 @@ class Delete extends Component
     public function delete()
     {
         try {
+            $this->opportunity->categories()->detach();
             $this->opportunity->delete();
             session()->flash('flash.banner', 'Opportunity successfully removed from the system!');
             session()->flash('flash.bannerStyle', 'success');

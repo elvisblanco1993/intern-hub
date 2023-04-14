@@ -9,12 +9,7 @@ use Illuminate\Support\Facades\Log;
 
 class Create extends Component
 {
-    public $modal, $name, $email, $category;
-
-    public function mount($category)
-    {
-        $this->category = $category;
-    }
+    public $modal, $name, $email, $categories = [];
 
     public function render()
     {
@@ -23,22 +18,24 @@ class Create extends Component
 
     public function save()
     {
+
         $this->validate([
             'name' => 'required',
             'email' => 'required|email',
         ]);
 
-        $category = Category::where('name', $this->category)->first();
-
-        if ($category->exists()) {
+        if (count($this->categories) > 0) {
             try {
                 $subscriber = Subscriber::create([
                     'name' => $this->name,
                     'email' => $this->email,
                 ]);
-                $subscriber->categories()->attach($category->id);
 
-                session()->flash('message', 'You have successfully subscribed to ' . $this->category);
+                foreach ($this->categories as $key => $category) {
+                    $subscriber->categories()->attach($category);
+                }
+
+                session()->flash('message', 'You have successfully subscribed!');
                 session()->flash('style', 'success');
             } catch (\Throwable $th) {
                 Log::error($th);

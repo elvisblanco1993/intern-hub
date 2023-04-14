@@ -10,12 +10,12 @@ class Index extends Component
 {
     use WithPagination;
 
-    public $query = '';
+    public $query = '', $category = '';
 
     public function render()
-    {                                                                                          
+    {
         return view('livewire.website.opportunity.index', [
-            'opportunities' => Opportunity::where('title', 'like', '%' . $this->query . '%')->get(),
+            'opportunities' => Opportunity::where('title', 'like', '%' . $this->query . '%')->where('category', 'like', '%' . $this->category . '%')->get(),
         ])->layout('layouts.guest');
     }
 }

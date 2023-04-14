@@ -15,4 +15,9 @@ class Opportunity extends Model
     {
         return $this->belongsTo(Team::class);
     }
+
+    public function categories()
+    {
+        return $this->belongsToMany(Category::class);
+    }
 }

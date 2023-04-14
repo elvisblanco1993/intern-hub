@@ -24,19 +24,15 @@
                 <x-input id="salary" type="text" wire:model="salary" class="mt-1 w-full" />
             </div>
             <div class="mt-6">
-                <x-label for="category">Category</x-label>
-                <select name="" id="category" wire:model="category" class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm mt-1 w-full">
-                    @include('partials.categories')
+                <x-label for="categories">Select categories</x-label>
+                <select wire:model="categories" multiple
+                    class="mt-1 w-full border-gray-300 focus:border-orange-500 focus:ring-orange-100 rounded-md shadow-sm">
+                    @foreach (\App\Models\Category::get() as $category)
+                        <option value="{{ $category->id }}">{{ $category->name }}</option>
+                    @endforeach
                 </select>
-                <x-input-error for="category"/>
+                <x-input-error for="categories" class="mt-1"/>
             </div>
-
-            @if ($category == 'Other')
-                <div class="mt-6 bg-slate-100 p-4 rounded-lg">
-                    <x-label for="custom_category">Write your own category here</x-label>
-                    <x-input id="custom_category" type="text" wire:model="custom_category" class="mt-1 w-full" />
-                </div>
-            @endif
         </x-slot>
         <x-slot name="footer">
             <x-secondary-button wire:click="$toggle('modal')">Cancel</x-secondary-button>

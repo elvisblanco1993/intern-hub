@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Log;
 class Edit extends Component
 {
     public $modal;
-    public $title, $location, $url, $salary, $category, $custom_category;
+    public $title, $location, $url, $salary, $categories = [];
     public Opportunity $opportunity;
 
     public function mount()
@@ -18,7 +18,6 @@ class Edit extends Component
         $this->location = $this->opportunity->location;
         $this->url = $this->opportunity->url;
         $this->salary = $this->opportunity->salary;
-        $this->category = $this->opportunity->category;
     }
 
     public function render()
@@ -33,7 +32,7 @@ class Edit extends Component
             'title' => 'required',
             'location' => 'required',
             'url' => 'required|active_url',
-            'category' => 'required'
+            'categories' => 'required'
         ]);
 
         // Try to create opportunity.
@@ -44,8 +43,14 @@ class Edit extends Component
                 'location' => $this->location,
                 'url' => $this->url,
                 'salary' => $this->salary,
-                'category' => ($this->category == 'Other') ? $this->custom_category : $this->category,
             ]);
+
+            $this->opportunity->categories()->detach();
+
+            foreach ($this->categories as $key => $category) {
+                $this->opportunity->categories()->attach($category);
+            }
+
             session()->flash('flash.banner', 'Opportunity successfully updated!');
             session()->flash('flash.bannerStyle', 'success');
         } catch (\Throwable $th) {

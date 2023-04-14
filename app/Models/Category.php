@@ -15,4 +15,9 @@ class Category extends Model
     {
         return $this->belongsToMany(Subscriber::class);
     }
+
+    public function opportunities()
+    {
+        return $this->belongsToMany(Opportunity::class);
+    }
 }
