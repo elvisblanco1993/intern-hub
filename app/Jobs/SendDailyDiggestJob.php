@@ -39,16 +39,17 @@ class SendDailyDiggestJob implements ShouldQueue
             $email_address = $subscriber->email;
             $full_name = $subscriber->name;
             foreach ($subscriber->categories as $category) {
-                $jobs = $category->opportunities()->select('title', 'url')->whereNull('closed_at')->distinct()->get()->toArray();
-                // $jobs = Opportunity::select('title', 'url')->where('category', 'like', '%' . $category->name . '%')
-                //     ->whereNull('closed_at')
-                //     ->whereBetween('created_at', [
-                //         now()->subDay()->startOfDay(),
-                //         now()->subDay()->endOfDay()
-                //     ])
-                //     ->get()->toArray();
-                // if ( array_intersect($jobs, $this->job_list) ) {
-                // }
+                $jobs = $category->opportunities()
+                    ->select('title', 'url')
+                    ->whereNull('closed_at')
+                    ->whereBetween('created_at', [
+                        now()->subDay()->startOfDay(),
+                        now()->subDay()->endOfDay()
+                    ])
+                    ->distinct()
+                    ->get()
+                    ->toArray();
+
                 if (count($this->job_list) > 0) {
                     $indices = [];
                     foreach ($this->job_list as $item) {
