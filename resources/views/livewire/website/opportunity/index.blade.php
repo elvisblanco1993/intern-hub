@@ -32,7 +32,7 @@
                     class="border-gray-300 focus:border-orange-500 focus:ring-orange-100 rounded-md shadow-sm">
                     <option value="">Filter</option>
                     @foreach (\App\Models\Category::get() as $category)
-                        <option value="{{ $category->name }}">{{ $category->name }}</option>
+                        <option value="{{ $category->id }}">{{ $category->name }}</option>
                     @endforeach
                 </select>
                 @livewire('website.subscriber.create')
