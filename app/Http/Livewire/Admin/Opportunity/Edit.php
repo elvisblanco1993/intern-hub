@@ -31,7 +31,7 @@ class Edit extends Component
         $this->validate([
             'title' => 'required',
             'location' => 'required',
-            'url' => 'required|active_url',
+            'url' => 'required|active_url|min:3|max:255',
             'categories' => 'required'
         ]);
 
