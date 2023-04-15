@@ -81,7 +81,7 @@ There are some things you will need before you can get started developing with *
     ```
 9. **Run migrations (this will create your database tables).**
 
-    ```php artisan migrate```
+    ```php artisan migrate && php artisan db:seed```
     
 10. **Generate front-end assets.**
 
