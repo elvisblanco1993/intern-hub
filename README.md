@@ -87,6 +87,14 @@ There are some things you will need before you can get started developing with *
 
     Run ```npm run build``` if you are deploying on production, or ```npm run dev``` if you are deploying on a staging site want live reload
 
+11. Lastly, since we will be sending a daily diggest email, we need to set up a cron job in our server. We will do this like so:
+    
+    Open your cron file by running ```crontab -e```:
+    
+    ```*/10 * * * * cd /path-to-your-project && php artisan schedule:run >> /dev/null 2>&1```
+
+    Save your changes.
+
 ## You are all set!
 
 Now your InternHub site should be up and running.

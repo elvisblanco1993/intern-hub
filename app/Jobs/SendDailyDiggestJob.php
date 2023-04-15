@@ -47,12 +47,11 @@ class SendDailyDiggestJob implements ShouldQueue
             $jobs = Opportunity::whereHas('categories', function ($query) use ($subscribed_to_categories) {
                 $query->whereIn('category_id', $subscribed_to_categories);
             })
-            // ->select('title', 'url')
             ->whereNull('closed_at')
-            // ->whereBetween('created_at', [
-            //     now()->subDay()->startOfDay(),
-            //     now()->subDay()->endOfDay()
-            // ])
+            ->whereBetween('created_at', [
+                now()->subDay()->startOfDay(),
+                now()->subDay()->endOfDay()
+            ])
             ->distinct()->get()->toArray();
 
             if (count($jobs) > 0) {
