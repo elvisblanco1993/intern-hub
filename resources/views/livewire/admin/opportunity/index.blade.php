@@ -22,7 +22,7 @@
                             Published at
                         </th>
                         <th scope="col" class="px-6 py-3">
-                            Category
+                            Categories
                         </th>
                         <th scope="col" class="px-6 py-3">
                             Location
@@ -37,7 +37,13 @@
                         <tr class="bg-white border-b hover:bg-gray-50">
                             <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">{{ $opportunity->title }}</th>
                             <td class="px-6 py-4">{{ Carbon\Carbon::parse($opportunity->created_at)->format('M d, Y') }}</td>
-                            <td class="px-6 py-4">{{ $opportunity->category }}</td>
+                            <td class="px-6 py-4 flex space-x-1">
+                                @forelse ($opportunity->categories as $category)
+                                    <span class="text-xs font-medium px-1 py-0.5 bg-slate-50 text-slate-600">{{ $category->name }}</span>
+                                @empty
+
+                                @endforelse
+                            </td>
                             <td class="px-6 py-4">{{ $opportunity->location }}</td>
                             <td class="flex items-center px-6 py-4 space-x-3">
                                 @livewire('admin.opportunity.edit', ['opportunity' => $opportunity], key('edit-'.$opportunity->id))
