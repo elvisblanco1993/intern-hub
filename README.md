@@ -89,10 +89,12 @@ There are some things you will need before you can get started developing with *
 
 11. Lastly, since we will be sending a daily diggest email, we need to set up a cron job in our server. We will do this like so:
     
-    Open your cron file by running ```crontab -e```:
+    Open your cron file by running ```crontab -e``` and add the following line at the end of the file:
     
     ```*/10 * * * * cd /path-to-your-project && php artisan schedule:run >> /dev/null 2>&1```
 
+    Make sure you replace '/path-to-your-project' with the actual path to your project.
+    
     Save your changes.
 
 ## You are all set!
