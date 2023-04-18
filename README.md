@@ -102,7 +102,89 @@ There are some things you will need before you can get started developing with *
     chmod -R 775 bootstrap/cache;
     ```
 
-12. **Setup automated daily diggest emails**
+12. **Add InternHub to your web server**
+    
+### Create Nginx File
+    
+    ```sudo nano /etc/nginx/sites-available/voicebits```
+
+    ```
+    server {
+        listen 80;
+        server_name voicebits.localhost; # Edit this
+        root /home/elvis/Projects/voicebits-2.0/public; # Edit this
+
+        add_header X-Frame-Options "SAMEORIGIN";
+        add_header X-XSS-Protection "1; mode=block";
+        add_header X-Content-Type-Options "nosniff";
+
+        index index.php;
+
+        charset utf-8;
+
+        client_max_body_size 100M;
+
+        location / {
+            try_files $uri $uri/ /index.php?$query_string;
+        }
+
+        location = /favicon.ico { access_log off; log_not_found off; }
+        location = /robots.txt  { access_log off; log_not_found off; }
+
+        error_page 404 /index.php;
+
+        location ~ \.php$ {
+            fastcgi_pass unix:/var/run/php/php8.1-fpm.sock; # Replace with correct PHP version information
+            fastcgi_param SCRIPT_FILENAME $realpath_root$fastcgi_script_name;
+            include fastcgi_params;
+        }
+
+        location ~ /\.(?!well-known).* {
+            deny all;
+        }
+
+        # Enable gzip compression
+        gzip on;
+        gzip_comp_level 5;
+        gzip_min_length 256;
+        gzip_proxied any;
+        # Compress all output labeled with one of the following MIME-types.
+        gzip_types
+        application/atom+xml
+        application/javascript
+        application/json
+        application/ld+json
+        application/manifest+json
+        application/rss+xml
+        application/vnd.geo+json
+        application/vnd.ms-fontobject
+        application/x-font-ttf
+        application/x-web-app-manifest+json
+        application/xhtml+xml
+        application/xml
+        font/opentype
+        image/bmp
+        image/svg+xml
+        image/x-icon
+        text/cache-manifest
+        text/css
+        text/plain
+        text/vcard
+        text/vnd.rim.location.xloc
+        text/vtt
+        text/x-component
+        text/x-cross-domain-policy;
+    }
+```
+
+    ### Enable NGINX Site
+    sudo ln -s /etc/nginx/sites-available/voicebits /etc/nginx/sites-enabled/;
+    sudo rm /etc/nginx/sites-enabled/default;
+
+    ### Restart Nginx Server
+    sudo systemctl restart nginx;
+
+13. **Setup automated daily diggest emails**
     Lastly, since we will be sending a daily diggest email, we need to set up a cron job in our server. We will do this like so:
     
     Open your cron file by running ```crontab -e``` and add the following line at the end of the file:
