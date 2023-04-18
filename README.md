@@ -113,8 +113,8 @@ There are some things you will need before you can get started developing with *
     ```
     server {
         listen 80;
-        server_name voicebits.localhost;
-        root /home/elvis/Projects/voicebits-2.0/public;
+        server_name internhub.localhost;
+        root /var/www/internhub/public;
 
         add_header X-Frame-Options "SAMEORIGIN";
         add_header X-XSS-Protection "1; mode=block";
@@ -181,7 +181,7 @@ There are some things you will need before you can get started developing with *
 
     **Enable NGINX Site**
 
-    ```sudo ln -s /etc/nginx/sites-available/voicebits /etc/nginx/sites-enabled/;```
+    ```sudo ln -s /etc/nginx/sites-available/internhub /etc/nginx/sites-enabled/;```
 
     ```sudo rm /etc/nginx/sites-enabled/default;```
 
