@@ -21,6 +21,12 @@ There are some things you will need before you can get started developing with *
 [mamp]: https://www.mamp.info
 [xampp]: https://www.apachefriends.org/
 
+## Preparing your server
+
+Install all the necessary dependencies:
+
+```sudo apt install -y composer npm git php-mbstring php-imagick php-bcmath php-xml php-fpm php-zip php-intl php-gd php-common php-fpm php-cli unzip curl php-curl nginx redis php-redis mysql-server php-mysql;```
+
 ## Getting **InternHub** up and running in your server
 
 1. **Clone the repository into your development environment.**
@@ -87,7 +93,17 @@ There are some things you will need before you can get started developing with *
 
     Run ```npm run build``` if you are deploying on production, or ```npm run dev``` if you are deploying on a staging site want live reload
 
-11. Lastly, since we will be sending a daily diggest email, we need to set up a cron job in our server. We will do this like so:
+11. **Fix filesystem permissions**
+    ```
+    sudo chgrp -R www-data . ;
+    sudo chown -R www-data:www-data storage;
+    sudo chown -R www-data:www-data bootstrap/cache;
+    chmod -R 775 ./storage;
+    chmod -R 775 bootstrap/cache;
+    ```
+
+12. **Setup automated daily diggest emails**
+    Lastly, since we will be sending a daily diggest email, we need to set up a cron job in our server. We will do this like so:
     
     Open your cron file by running ```crontab -e``` and add the following line at the end of the file:
     
