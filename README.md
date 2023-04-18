@@ -25,7 +25,9 @@ There are some things you will need before you can get started developing with *
 
 ## Install all the necessary dependencies:
 
-```sudo apt install -y composer npm git php-mbstring php-imagick php-bcmath php-xml php-fpm php-zip php-intl php-gd php-common php-fpm php-cli unzip curl php-curl nginx redis php-redis mysql-server php-mysql;```
+    ```
+    sudo apt install -y composer npm git php-mbstring php-imagick php-bcmath php-xml php-fpm php-zip php-intl php-gd php-common php-fpm php-cli unzip curl php-curl nginx redis php-redis mysql-server php-mysql;
+    ```
 
 ## Getting **InternHub** up and running in your server
 
@@ -108,6 +110,7 @@ There are some things you will need before you can get started developing with *
     
     ```sudo nano /etc/nginx/sites-available/voicebits```
     
+    ```
     server {
         listen 80;
         server_name voicebits.localhost;
