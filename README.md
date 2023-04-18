@@ -104,7 +104,7 @@ There are some things you will need before you can get started developing with *
 
 12. **Add InternHub to your web server**
     
-### Create Nginx File
+    **Create Nginx File**
     
     sudo nano /etc/nginx/sites-available/voicebits
     
@@ -175,11 +175,11 @@ There are some things you will need before you can get started developing with *
         text/x-cross-domain-policy;
     }
 
-    ### Enable NGINX Site
+    **Enable NGINX Site**
     sudo ln -s /etc/nginx/sites-available/voicebits /etc/nginx/sites-enabled/;
     sudo rm /etc/nginx/sites-enabled/default;
 
-    ### Restart Nginx Server
+    **Restart Nginx Server**
     sudo systemctl restart nginx;
 
 13. **Setup automated daily diggest emails**
