@@ -177,13 +177,14 @@ There are some things you will need before you can get started developing with *
         text/x-component
         text/x-cross-domain-policy;
     }
+    ```
 
     **Enable NGINX Site**
-    sudo ln -s /etc/nginx/sites-available/voicebits /etc/nginx/sites-enabled/;
-    sudo rm /etc/nginx/sites-enabled/default;
+    ```sudo ln -s /etc/nginx/sites-available/voicebits /etc/nginx/sites-enabled/;```
+    ```sudo rm /etc/nginx/sites-enabled/default;```
 
     **Restart Nginx Server**
-    sudo systemctl restart nginx;
+    ```sudo systemctl restart nginx;```
 
 13. **Setup automated daily diggest emails**
     Lastly, since we will be sending a daily diggest email, we need to set up a cron job in our server. We will do this like so:
