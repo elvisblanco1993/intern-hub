@@ -106,12 +106,12 @@ There are some things you will need before you can get started developing with *
     
     **Create Nginx File**
     
-    sudo nano /etc/nginx/sites-available/voicebits
+    ```sudo nano /etc/nginx/sites-available/voicebits```
     
     server {
         listen 80;
-        server_name voicebits.localhost; # Edit this
-        root /home/elvis/Projects/voicebits-2.0/public; # Edit this
+        server_name voicebits.localhost;
+        root /home/elvis/Projects/voicebits-2.0/public;
 
         add_header X-Frame-Options "SAMEORIGIN";
         add_header X-XSS-Protection "1; mode=block";
