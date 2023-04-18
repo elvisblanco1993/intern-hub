@@ -106,9 +106,8 @@ There are some things you will need before you can get started developing with *
     
 ### Create Nginx File
     
-    ```sudo nano /etc/nginx/sites-available/voicebits```
-
-    ```
+    sudo nano /etc/nginx/sites-available/voicebits
+    
     server {
         listen 80;
         server_name voicebits.localhost; # Edit this
@@ -175,7 +174,6 @@ There are some things you will need before you can get started developing with *
         text/x-component
         text/x-cross-domain-policy;
     }
-```
 
     ### Enable NGINX Site
     sudo ln -s /etc/nginx/sites-available/voicebits /etc/nginx/sites-enabled/;
