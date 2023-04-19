@@ -25,51 +25,59 @@ There are some things you will need before you can get started developing with *
 
 ## Install all the necessary dependencies:
 
-    ```sudo apt install -y composer npm git php-mbstring php-imagick php-bcmath php-xml php-fpm php-zip php-intl php-gd php-common php-fpm php-cli unzip curl php-curl nginx redis php-redis mysql-server php-mysql;```
+```
+  sudo apt install -y composer npm git php-mbstring
+  php-imagick php-bcmath php-xml php-fpm php-zip 
+  php-intl php-gd php-common php-fpm php-cli unzip 
+  curl php-curl nginx redis php-redis 
+  mysql-server php-mysql;
+```    
 
 ## Getting **InternHub** up and running in your server
 
 1. **Clone the repository into your development environment.**
 
-    ```git clone https://github.com/elvisblanco1993/intern-hub.git```
+	```git clone https://github.com/elvisblanco1993/intern-hub.git```
 
 2. **Move into the project directory.**
 
-    ```cd intern-hub```
+	```cd intern-hub```
 
 3. **Create the environment file.**
 
-    ```cp .env.example .env``` for UNIX based systems, and ```copy .env.example .env``` on MS Windows
+	```cp .env.example .env``` for UNIX based systems, and ```copy .env.example .env``` on MS Windows
 
 4. **Install back-end dependencies (this includes all packages InternHub depends on).**
 
-    ```composer install```
+	```composer install```
 
 5. **Install front-end dependencies.**
 
-    ```npm install```
+	```npm install```
 
 6. **Generate application key (this will help with encryption and security).**
 
-    ```php artisan key:generate```
+	```php artisan key:generate```
 
 7. **Create database.**
 
-    1. Open a terminal window, and access your MySQL server
+	i. Open a terminal window, and access your MySQL server
 
-        ```sudo mysql -u root -p;```
+	```sudo mysql -u root -p;```
 
-    2. Create your database and assign permissions
+	ii. Create your database and assign permissions
+    
+```
+	CREATE DATABASE internhub;
+	CREATE USER 'internhub'@'localhost' IDENTIFIED BY '{YOUR_PASSWORD}';
+	ALTER USER 'internhub'@'localhost' IDENTIFIED WITH mysql_native_password BY '{YOUR_PASSWORD}';
+	GRANT ALL PRIVILEGES ON internhub.* to 'internhub'@'localhost' WITH GRANT OPTION;
+	FLUSH PRIVILEGES;
+	EXIT;
+```        
+        
 
-        ```
-        CREATE DATABASE internhub;
-        CREATE USER 'internhub'@'localhost' IDENTIFIED BY '{YOUR_PASSWORD}';
-        ALTER USER 'internhub'@'localhost' IDENTIFIED WITH mysql_native_password BY '{YOUR_PASSWORD}';
-        GRANT ALL PRIVILEGES ON internhub.* to 'internhub'@'localhost' WITH GRANT OPTION;
-        FLUSH PRIVILEGES;
-        EXIT;
-        ```
-        *Replace {YOUR_PASSWORD} with a strong, secure password.*
+	iii.*Replace {YOUR_PASSWORD} with a strong, secure password.*
 
  8. **Add your database credentials to InternHub.**
 
@@ -77,14 +85,15 @@ There are some things you will need before you can get started developing with *
 
     To do so, open your *.env* file, and modify the following lines.
 
-    ```
+```
     DB_CONNECTION=mysql
     DB_HOST=127.0.0.1
     DB_PORT=3306
     DB_DATABASE=internhub
     DB_USERNAME=internhub
     DB_PASSWORD=SET_YOUR_PASSWORD_HERE
-    ```
+```
+
 9. **Run migrations (this will create your database tables).**
 
     ```php artisan migrate && php artisan db:seed```
