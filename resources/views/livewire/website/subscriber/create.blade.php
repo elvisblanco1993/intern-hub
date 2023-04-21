@@ -1,6 +1,6 @@
 <div>
     {{-- Care about people's approval and you will be their prisoner. --}}
-    <button wire:click="$toggle('modal')" class="px-4 py-2 bg-intern text-white border border-intern rounded-md">Subscribe</button>
+    <button wire:click="$toggle('modal')" class="mt-2 md:mt-0 px-4 py-2 bg-intern text-white border border-intern rounded-md">Subscribe</button>
 
     <x-dialog-modal wire:model="modal">
         <x-slot name="title">Subscribe</x-slot>
