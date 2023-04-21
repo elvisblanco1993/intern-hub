@@ -27,7 +27,7 @@
         <div class="flex items-center justify-between">
             <x-input type="search" wire:model="query" placeholder="Search by position name" />
 
-            <div class="flex items-center space-x-4">
+            <div class="md:flex items-center space-x-4">
                 <select wire:model="category"
                     class="border-gray-300 focus:border-orange-500 focus:ring-orange-100 rounded-md shadow-sm">
                     <option value="">Filter</option>

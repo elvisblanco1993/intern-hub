@@ -48,10 +48,10 @@ class SendDailyDiggestJob implements ShouldQueue
                 $query->whereIn('category_id', $subscribed_to_categories);
             })
             ->whereNull('closed_at')
-            ->whereBetween('created_at', [
-                now()->subDay()->startOfDay(),
-                now()->subDay()->endOfDay()
-            ])
+            // ->whereBetween('created_at', [
+            //     now()->subDay()->startOfDay(),
+            //     now()->subDay()->endOfDay()
+            // ])
             ->distinct()->get()->toArray();
 
             if (count($jobs) > 0) {
