@@ -24,7 +24,7 @@
     </header>
 
     <div class="py-12 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex items-center justify-between">
+        <div class="md:flex items-center justify-between">
             <x-input type="search" wire:model="query" placeholder="Search by position name" />
 
             <div class="md:flex items-center space-x-4">
